@@ -47,7 +47,7 @@ const  Home =(prop)=> {
       {randomData.map((item,index) => (
      
         <Grid item xs={4}>
-        <Card sx={{ maxWidth: 345 }} key={item.id}>
+        <Card sx={{ maxWidth: 345 }} key={item.idDrink}>
       <CardMedia
         sx={{ height: 140 }}
         image={item.strDrinkThumb}

@@ -16,24 +16,32 @@ import {
   import Typography from '@mui/material/Typography';
   import Card from '@mui/material/Card';
 import { CardActions } from '@mui/material';
-      
-const  Favorite =(props)=> {
+import { useNavigate } from 'react-router-dom';
+
+const  SearchBar =(props)=> {
     let { mode } = useParams();
+    const navigate = useNavigate();
 
     const [data1, setData1] = useState([]);
-console.log("mode",mode);
+    const irr = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${mode}`;
+    console.log("irr", mode)
+    console.log("irrirr", irr)
+
     useEffect(() => {
-        fetch(`www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${mode}`)
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${mode}`)
             .then((response) =>
                 response.json())
             .then((data) =>
-            setData1(data.drinks)
+                setData1(data.drinks)
             );
+        console.log("result", data1)
     }, []);
-    // const filterData = data1.filter((num)=> num.strDrink === mode);
-    const favouritArray = [];
-    favouritArray.push(data1);
-    console.log("favouritArray",data1)
+    const filterData = data1.filter((num)=> num.strDrink === mode);
+
+    const addToFavioueiyr =()=>{
+        navigate(`/favorite/${filterData[0].idDrink}`)
+
+    }
 	return (
 	<>
 <Header />
@@ -48,7 +56,7 @@ console.log("mode",mode);
 >
       <Grid container spacing={2}>
 
-      {favouritArray.map((item,index) => (
+      {filterData.map((item,index) => (
      
         <Grid item xs={4}>
         <Card sx={{ maxWidth: 345 }} key={item.idDrink}>
@@ -63,6 +71,7 @@ console.log("mode",mode);
         </Typography>
       </CardContent>
 <CardActions>
+<Button size="small" onClick={addToFavioueiyr}>Add</Button>
 
 </CardActions>
     
@@ -77,4 +86,4 @@ console.log("mode",mode);
 }
 
 
-export default Favorite;
+export default SearchBar;

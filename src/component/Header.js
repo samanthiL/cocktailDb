@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-
+import { Favorite } from '@material-ui/icons';
+import { useNavigate } from 'react-router-dom';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -52,8 +53,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header =()=> {
-const getSearchData =() =>{
+  const navigate = useNavigate();
+  const [value, setValue] = React.useState()
 
+  const getSearchData =() =>{
+    console.log("value",value)
+navigate(`/searchBar/${value}`)
 }
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -84,7 +89,10 @@ const getSearchData =() =>{
           >
           The Ordinary Drink
           </Typography>
-          <Typography  onClick={() => getSearchData()}
+          <button  onClick={()=>{                                 //adding the onChange event
+                getSearchData()
+              }} >ss</button>
+          <Typography 
             variant="h6"
             noWrap
             component="div"

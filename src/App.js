@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Favorite from './pages/Favorite';
-// import SearchBar from './pages/SearchBar';
+import SearchBar from './pages/SearchBar';
 import './App.css';
 
 class App extends Component {
@@ -13,9 +13,8 @@ render() {
 
 		<Routes>
 				<Route exact path='/' element={< Home />}></Route>
-				<Route exact path='/favorite' element={< Favorite />}></Route>
-				{/* <Route exact path='/searchBar' element={< SearchBar />}></Route> */}
-		</Routes>
+				<Route exact path='/favorite/:mode' element={< Favorite />}></Route>
+				 <Route exact path='/searchBar/:mode' element={< SearchBar />}></Route>		</Routes>
 		    </Router>
 
 		</div>
