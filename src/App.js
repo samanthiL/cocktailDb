@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Favorite from './pages/Favorite';
+import SearchBar from './pages/SerachBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-        and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div>
+		 <Router>
+
+	<Routes> 
+		 <Route exact path='/' element={< Home />}></Route>
+			<Route exact path='/favorite' element={< Favorite />}></Route>
+				 <Route exact path='/searchBar/:mode' element={< SearchBar />}></Route>  
+         
+	 </Routes>
+
+     </Router> 
+	  </div>
+	  
+    </Provider>
   );
 }
 
