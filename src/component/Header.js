@@ -6,10 +6,10 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import { Favorite } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -55,45 +55,59 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Header =()=> {
   const navigate = useNavigate();
   const [value, setValue] = React.useState()
-  
-  
   const getSearchData =() =>{
     console.log("value",value)
 navigate(`/searchBar/${value}`)
 }
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ 
-    marginLeft: 'auto',
-    backgroundColor:'#051A49',
-    width:'80%',
-    marginRight: 'auto'}} >
-        <Toolbar >
-          <Typography onClick={()=>navigate('./home')}
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' },marginLeft:'20%' }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
           The CocktailDB
           </Typography>
-          <Button variant="contained" sx={{color:'white'}} onClick={()=>{                                 //adding the onChange event
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+          The Ordinary Drink
+          </Typography>
+          <button  onClick={()=>{                                 //adding the onChange event
                 getSearchData()
-              }} >search</Button>
+              }} >ss</button>
+          <Typography 
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+          Cocktail
+          </Typography>
           <Search>
-            
             <SearchIconWrapper>
-            
               <IconButton >
               <SearchIcon />
                 </IconButton> 
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search in here"
+              placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onChange={event=>{                                 //adding the onChange event
-                setValue(event.target.value)
-              }}
             />
           </Search>
         </Toolbar>
